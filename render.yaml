@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: skypeck
+    runtime: static
+    buildCommand: ""
+    staticPublishPath: .
+    headers:
+      - path: /*.wasm
+        name: Content-Type
+        value: application/wasm
+      - path: /*.glb
+        name: Content-Type
+        value: model/gltf-binary
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
